@@ -1,0 +1,32 @@
+%周期对称三角波合成
+t=0:0.001:0.1;
+% a是根据傅里叶分解计算的乘法系数
+a=24/(pi*pi);
+y=3+a*cos(100*pi*t);
+subplot(221);
+plot(t,y);
+axis([0,0.1,0,6]);
+xlabel('time');
+ylabel('前1项有限级数');
+y=3+a*(cos(100*pi*t)+cos(3*100*pi*t)/9)+cos(5*100*pi*t)/25;
+subplot(222);
+plot(t,y);
+axis([0,0.1,0,6]);
+xlabel('time');
+ylabel('前3项有限级数');
+y=3+a*(cos(100*pi*t)+cos(3*100*pi*t)/9+cos(5*100*pi*t)/25+cos(7*100*pi*t)/49+cos(9*100*pi*t)/81);
+subplot(223);
+plot(t,y);
+axis([0,0.1,0,6]);
+xlabel('time');
+ylabel('前5项有限级数');
+t=0:0.001:0.1;
+y=0;
+for i=1:100
+    y=y+a*cos((2*i-1)*2*50*pi*t)/((2*i-1)*(2*i-1));
+end
+subplot(224);
+plot(t,y+3);
+axis([0,0.1,0,6]);
+xlabel('time');
+ylabel('前100项有限级数');
